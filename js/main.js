@@ -15,32 +15,36 @@ $(function(){
     $('#calc').click(function(){
         if(operator === '+'){
             result = num1 + num2;
+            $display.text(result);
         }
         //if operator is addition, adds the two numbers
         if(operator === '+'){
             result = num1 + num2;
+            $display.text(result);
         }
         //if operator is subtraction, subtracts num2 from num1
         if(operator === '-'){
             result = num1 - num2;
+            $display.text(result);
         }
         //if operator is multiplication, multiplies the two numbers
         if(operator === 'x'){
             result = num1 * num2;
+            $display.text(result);
         }
+
+
         //if operator is division, divides num1 by num2; if num2 is 0,
         //diplays an error
-        if(operator === '\xF7'){
-            if (num2 === 0){
-                $display.text("Error");
-            }
-            else{
-                result = num1 / num2;
-
-            }
+        if(operator === '\xF7' && num2 === 0){
+            $display.text("Error");
         }
-        $display.text(result);
-        console.log(result);
+        else if(operator === '\xF7' && num2 !== 0){
+            result = num1 / num2;
+            $display.text(result);
+        }
+
+        // $display.text(result);
     });
 
     $buttons.on('click', 'span:not(#cancel):not(#calc)', function(){
