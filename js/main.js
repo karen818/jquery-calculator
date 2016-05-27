@@ -1,11 +1,11 @@
-var $buttons = $('div.buttons');
+var $buttons = $('.buttons');
 var operator = null; //best practice to set to null; specifically nothing
 var operatorUsed = false;
 
 $buttons.on('click', 'span', function(){
     var isOperator = $(this).hasClass('operator');
     var button = $(this);
-    var display = $('div#screen');
+    var display = $('#screen');
 
     if(button.text() === 'C'){
         display.text('');
@@ -15,6 +15,7 @@ $buttons.on('click', 'span', function(){
         if((button.text() !== 'C') || (button.text() !== '=')){
             operatorUsed = true;
             operator = button.text();
+            console.log(operator);
             display.append(button.text());
         }
 
@@ -27,6 +28,21 @@ $buttons.on('click', 'span', function(){
             var result = parseInt(expression[0]) + parseInt(expression[1]);
             display.text(result);
         }
+
+        if(operator === '-'){
+            var result = parseInt(expression[0]) - parseInt(expression[1]);
+            display.text(result);
+        }
+
+        if(operator === 'x'){
+            var result = parseInt(expression[0]) * parseInt(expression[1]);
+            display.text(result);
+        }
+
+        // if(operator === '\xF7'){
+        //     var result = parseInt(expression[0]) + parseInt(expression[1]);
+        //     display.text(result);
+        // }
         //\xF7 for divide symbol
 
         if(!isOperator){
