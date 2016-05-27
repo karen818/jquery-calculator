@@ -32,8 +32,6 @@ $(function(){
             result = num1 * num2;
             $display.text(result);
         }
-
-
         //if operator is division, divides num1 by num2; if num2 is 0,
         //diplays an error
         if(operator === '\xF7' && num2 === 0){
@@ -41,7 +39,13 @@ $(function(){
         }
         else if(operator === '\xF7' && num2 !== 0){
             result = num1 / num2;
-            $display.text(result);
+            if (num1 % num2 !== 0){
+                $display.text(result.toPrecision(4));
+            }
+            else {
+                $display.text(result);
+            }
+
         }
 
         // $display.text(result);
@@ -56,7 +60,6 @@ $(function(){
             $display.append(button.text());
             num1 = parseInt($display.text().split(operator)[0]);
             num2 = parseInt($display.text().split(operator)[1]);
-            console.log(num1 + " " + num2);
         }
         //test if button pressed is an operator and hasn't been used
         if(isOperator && operatorUsed === false){
@@ -66,13 +69,9 @@ $(function(){
                 operatorUsed = true;
                 operator = button.text();
                 $display.append(button.text());
-                console.log(operator);
             }
 
         }
-        // console.log(parseInt(expression[0]));
-        // console.log(parseInt(expression[1]));
-        // console.log($display.text());
     });
 
 
